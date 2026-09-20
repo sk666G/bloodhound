@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # bloodhound - a brain wired to the user's shell.
 import os, sys, re, json, time, argparse, pathlib, subprocess, shutil, signal
 import urllib.request
@@ -51,7 +51,7 @@ class LLM:
         print(f"[*] starting llama-server ({os.path.basename(self.model)})")
         self.proc = subprocess.Popen(
             ["llama-server","-m",self.model,"-c","2048",
-             "-t",str(os.cpu_count() or 4),"-ngl","99",
+             "-t",str(os.cpu_count() or 4),"-ngl","99", "--repeat-penalty","1.15", "--repeat-last-n","128",
              "--host","127.0.0.1","--port",str(self.port),
              "--no-webui","-np","1"],
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
