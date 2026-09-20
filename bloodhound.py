@@ -196,36 +196,6 @@ def main():
                     break
         except Exception as e:
             print(f"[!] auto-pick failed: {e}")
-    # auto-pick model if missing
-    if not os.path.exists(a.model):
-        try:
-            import models as models_mod
-            for line in models_mod.recommend().splitlines():
-                if line.startswith("recommended:"):
-                    name = line.split(":", 1)[1].strip()
-                    p = models_mod.path_for(name)
-                    if p and not os.path.exists(p):
-                        print(f"[*] downloading recommended model {name} ...")
-                        models_mod.download(name)
-                    if p: a.model = p
-                    break
-        except Exception as e:
-            print(f"[!] auto-pick failed: {e}")
-    # auto-pick model if missing
-    if not os.path.exists(a.model):
-        try:
-            import models as models_mod
-            for line in models_mod.recommend().splitlines():
-                if line.startswith("recommended:"):
-                    name = line.split(":", 1)[1].strip()
-                    p = models_mod.path_for(name)
-                    if p and not os.path.exists(p):
-                        print(f"[*] downloading recommended model {name} ...")
-                        models_mod.download(name)
-                    if p: a.model = p
-                    break
-        except Exception as e:
-            print(f"[!] auto-pick failed: {e}")
     if a.reprobe: probe(force=True); print("[reprobed]")
 
     llm = LLM(a.model, a.port); llm.ensure()
@@ -259,6 +229,7 @@ def main():
 if __name__ == "__main__":
     sys.path.insert(0, str(ROOT))
     main()
+
 
 
 
