@@ -1,0 +1,8 @@
+﻿machine.json
+memory.jsonl
+models/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
